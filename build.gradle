@@ -1,8 +1,20 @@
-plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.3.21'
+buildscript {
+    ext.kotlin_version = '1.3.50'
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 
-group 'com.github.alexey-n-chernyshov.iroha-sandbox'
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+mainClassName = "com.github.alexeynchernyshov.irohatest.TransactionSerializer"
+
+group 'com.github.alexeynchernyshov.iroha-sandbox'
 version '0.0.1-SNAPSHOT'
 
 repositories {
@@ -13,8 +25,8 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    implementation 'com.github.hyperledger.iroha-java:client:5.2.0'
-    implementation "com.github.hyperledger.iroha-java:testcontainers:5.2.0"
+    implementation 'com.github.hyperledger.iroha-java:client:6.1.0'
+    implementation "com.github.hyperledger.iroha-java:testcontainers:6.1.0"
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
